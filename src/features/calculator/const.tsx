@@ -1,4 +1,4 @@
-export const operations = ['/', 'x', '-', '+'];
+export const operations = ['/', 'x', '-', '+'] as const;
 
 export const operands = [
   ['7', '8', '9'],

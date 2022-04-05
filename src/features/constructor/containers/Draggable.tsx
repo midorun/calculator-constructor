@@ -16,10 +16,7 @@ const Draggable: FC<DraggableProps> = ({
   component,
 
 }) => {
-  const {
-    components,
-    activeComponents
-  } = useAppSelector(state => state._constructor);
+  const { activeComponents } = useAppSelector(state => state._constructor);
   const dispatch = useAppDispatch();
 
   const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
@@ -36,7 +33,13 @@ const Draggable: FC<DraggableProps> = ({
       .findIndex(leavedComponent => leavedComponent === component)));
   };
 
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    dispatch(setDraggingComponent(null));
+  };
+
   const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
     dispatch(setDraggingComponent(null));
     dispatch(setAboveComponentIdx(-2));
   };
@@ -53,6 +56,7 @@ const Draggable: FC<DraggableProps> = ({
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
       onDoubleClick={handleDoubleClick}
+      onDrop={handleDrop}
     >
       {children}
     </div>

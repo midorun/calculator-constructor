@@ -1,11 +1,11 @@
 import React, { FC, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { EColors } from 'src/const/colors';
+import Calculator from 'src/features/calculator';
 import {
   activateComponent,
   setAboveComponentIdx
 } from 'src/features/constructor/constructorSlice';
-import Calculator from 'src/features/calculator';
 
 const dragEnterStyles = `bg-[${EColors.light_blue}]`;
 const baseStyles = `h-[480px] w-[243px] border border-dashed border-[${EColors.border_gray_dark}] rounded z-10`;
@@ -31,7 +31,7 @@ const Constructor: FC = () => {
 
   const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
     setClassName(baseStyles);
-    dispatch(setAboveComponentIdx(-1));
+    // dispatch(setAboveComponentIdx(-1));
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -40,8 +40,10 @@ const Constructor: FC = () => {
 
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
-    dispatch(activateComponent(draggingComponent!));
-    dispatch(setAboveComponentIdx(-2));
+    if (draggingComponent) {
+      dispatch(activateComponent(draggingComponent));
+    }
+    // dispatch(setAboveComponentIdx(-2));
   };
 
 

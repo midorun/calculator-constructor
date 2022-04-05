@@ -7,19 +7,22 @@ export type TButton = {
   width: string
   text: string
   disabled?: boolean
+  handleClick: () => void
 }
 
 const Button: FC<TButton> = ({
   width,
   text,
+  handleClick,
 }) => {
-  const {mode} = useAppSelector(state => state._constructor);
+  const { mode } = useAppSelector(state => state._constructor);
 
 
   return (
     <button
+      onClick={handleClick}
       className={`h-[48px] border border-solid border-[${EColors.border_gray}] text-[14px] leading-[15px] font-medium rounded-md hover:border-[${EColors.blue}] hover:border-[2px] ${mode === EMods.Constructor ? 'pointer-events-none' : ''}`}
-      style={{width}}
+      style={{ width }}
       disabled={mode === EMods.Constructor}
     >{text}</button>
   );

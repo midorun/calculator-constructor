@@ -16,9 +16,9 @@ export interface ConstructorState {
 }
 
 const initialState: ConstructorState = {
-  mode: EMods.Constructor,
+  mode: EMods.Runtime,
   components: Object.values(EComponents),
-  activeComponents: [],
+  activeComponents: Object.values(EComponents),
   draggingComponent: null,
   aboveComponentIdx: -2
 };
@@ -28,11 +28,13 @@ export const constructorSlice = createSlice({
   initialState,
   reducers: {
     activateComponent: (state, action: PayloadAction<TComponent>) => {
-      if (state.activeComponents.find(component => component === action.payload)) return;
+      if (state.activeComponents.find(activeComponent => activeComponent === action.payload)) {
+        state.activeComponents = state.activeComponents.filter(activeComponent => activeComponent !== action.payload);
+        state.activeComponents.splice(state.aboveComponentIdx + 1, 0, action.payload);
+        return;
+      }
 
       if (action.payload === EComponents.display) {
-        // activeComponents = activeComponents.filter(component => component
-        // !== EComponents.display);
         state.activeComponents = [EComponents.display, ...state.activeComponents];
         return;
       }
