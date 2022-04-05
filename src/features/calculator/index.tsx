@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useAppSelector } from 'src/app/hooks';
-import Display from 'src/features/constructor/components/Display';
+import Display from 'src/features/calculator/components/Display';
 import Stick from 'src/features/constructor/components/Stick';
 import Draggable from 'src/features/constructor/containers/Draggable';
-import EqualButton from 'src/features/constructor/containers/EqualButton';
-import Operands from 'src/features/constructor/containers/Operands';
-import Operations from 'src/features/constructor/containers/Operations';
+import EqualButton from 'src/features/calculator/components/EqualButton';
+import Operands from 'src/features/calculator/components/Operands';
+import Operations from 'src/features/calculator/components/Operations';
 import {
   EComponents,
   TComponent,

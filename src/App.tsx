@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from 'src/app/hooks';
 import Constructor from 'src/features/constructor';
-import Calculator from 'src/features/constructor/containers/Calculator';
+import Calculator from 'src/features/calculator';
 import Switch from 'src/features/constructor/containers/Switch';
 import './App.css';
 

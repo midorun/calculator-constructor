@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { EColors } from 'src/const/colors';
 import { setMode } from 'src/features/constructor/constructorSlice';
-import Tab from 'src/features/constructor/containers/Tab';
+import Tab from 'src/features/constructor/components/Tab';
 import { EMods, TTab } from 'src/features/constructor/types';
 
 

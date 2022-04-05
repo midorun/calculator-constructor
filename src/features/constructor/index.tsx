@@ -5,7 +5,7 @@ import {
   activateComponent,
   setAboveComponentIdx
 } from 'src/features/constructor/constructorSlice';
-import Calculator from 'src/features/constructor/containers/Calculator';
+import Calculator from 'src/features/calculator';
 
 const dragEnterStyles = `bg-[${EColors.light_blue}]`;
 const baseStyles = `h-[480px] w-[243px] border border-dashed border-[${EColors.border_gray_dark}] rounded z-10`;

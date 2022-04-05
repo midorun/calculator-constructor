@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Button from 'src/features/constructor/components/Button';
+import Button from 'src/features/calculator/components/Button';
 import { operations } from 'src/features/constructor/const';
 
 
