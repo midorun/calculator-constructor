@@ -1,5 +1,5 @@
 import { Action, configureStore, ThunkAction, } from '@reduxjs/toolkit';
-import calculatorReducer from 'src/features/calculator/calculatorSclise';
+import calculatorReducer from 'src/features/calculator/calculatorSlise';
 import constructorReducer from 'src/features/constructor/constructorSlice';
 import counterReducer from 'src/features/counter/counterSlice';
 

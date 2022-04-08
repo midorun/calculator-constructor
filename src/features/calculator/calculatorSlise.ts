@@ -10,14 +10,15 @@ export interface CalculatorState {
   secondOperand: string;
   operation: OperationType;
   prevOperation: OperationType;
+  maxDisplaySymbols?: number;
 }
 
 const initialState: CalculatorState = {
   result: '',
-  firstOperand: '11111111111111111111111111111111111',
+  firstOperand: '111111111111111111111111',
   secondOperand: '',
   operation: '',
-  prevOperation: ''
+  prevOperation: '',
 };
 
 export const calculatorSlice = createSlice({
@@ -72,9 +73,9 @@ export const calculatorSlice = createSlice({
       if (state.operation) state.prevOperation = state.operation;
       state.operation = '';
     },
-    addDot: (state => {
-      console.log('add dot');
-    })
+    setMaxDisplaySymblos: (state, action: PayloadAction<number>) => {
+      state.maxDisplaySymbols = action.payload;
+    }
   }
 });
 
@@ -82,7 +83,7 @@ export const {
   setOperand,
   setOperation,
   calculate,
-  addDot
+  setMaxDisplaySymblos
 } = calculatorSlice.actions;
 
 export default calculatorSlice.reducer;

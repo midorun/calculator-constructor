@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { useAppSelector } from 'src/app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { EColors } from 'src/const/colors';
+import { setMaxDisplaySymblos } from 'src/features/calculator/calculatorSlise';
 
 
 const Display: FC = () => {
@@ -8,34 +9,26 @@ const Display: FC = () => {
     firstOperand,
     secondOperand,
     result,
-    operation
+    maxDisplaySymbols
   } = useAppSelector(state => state.calculator);
+  const dispatch = useAppDispatch();
 
   const [output, setOutput] = useState('0');
   const outputRef = useRef<HTMLDivElement>(null);
 
   const setOutputCustom = (value: string) => {
-    setOutput(value.replace('.', ','));
+    const formattedValue = value.replace('.', ',');
+    setOutput(formattedValue.substr(0, maxDisplaySymbols || formattedValue.length));
   };
 
   useEffect(() => {
     const outputEl = outputRef.current;
-
+    console.dir(outputEl);
     if (outputEl && outputEl.scrollWidth > outputEl.clientWidth) {
-      const output = outputEl.innerText.replace(',', '.');
-      if (output.includes('.')) {
-        const [sign, frac] = output.split('.');
-
-        if (frac.length) {
-          Number(output).toFixed(frac.length - 1);
-        } else {
-          Number(output).
-        }
-      }
-
+      if (!maxDisplaySymbols) dispatch(setMaxDisplaySymblos(output.length - 1));
     }
 
-  }, [outputRef.current]);
+  }, [output]);
 
   useEffect(() => {
     if (result) {
@@ -55,10 +48,10 @@ const Display: FC = () => {
   return (
     <div className={'component-wrapper'}>
       <div
-        className={`w-full  h-[52px] bg-[${EColors.gray_blue}] rounded select-none flex flex-col justify-end`}>
+        className={`w-full px-[8px]  h-[52px] bg-[${EColors.gray_blue}] rounded select-none flex flex-col justify-end items-end`}>
         <div
           ref={outputRef}
-          className={`inline px-[8px] text-[${minimizeTextSize ? 19 : 36}px] leading-[${minimizeTextSize ? 23 : 44}px] font-extrabold text-right`}>{output}</div>
+          className={`w-[95%] text-[${minimizeTextSize ? 19 : 36}px] leading-[${minimizeTextSize ? 23 : 44}px] font-extrabold text-right`}>{output}</div>
       </div>
     </div>
   );
