@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { useAppSelector } from 'src/app/hooks';
-import { EColors } from 'src/const/colors';
-import { EMods } from 'src/features/constructor/types';
+import { useAppSelector } from 'app/hooks';
+import { EColors } from 'const/colors';
+import { EMods } from 'features/constructor/types';
 
 export type TButton = {
   width: string

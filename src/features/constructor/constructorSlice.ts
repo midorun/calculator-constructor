@@ -5,7 +5,7 @@ import {
   EMods,
   TComponent,
   TMode
-} from 'src/features/constructor/types';
+} from 'features/constructor/types';
 
 export interface ConstructorState {
   mode: keyof typeof EMods;

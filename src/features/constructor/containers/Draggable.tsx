@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import React, {FC} from 'react';
+import {useAppDispatch, useAppSelector} from 'app/hooks';
 import {
   deactivateComponent,
   setAboveComponentIdx,
   setDraggingComponent
-} from 'src/features/constructor/constructorSlice';
-import { TComponent } from 'src/features/constructor/types';
+} from 'features/constructor/constructorSlice';
+import {TComponent} from 'features/constructor/types';
 
 export type DraggableProps = {
   component: TComponent
@@ -16,10 +16,10 @@ const Draggable: FC<DraggableProps> = ({
   component,
 
 }) => {
-  const { activeComponents } = useAppSelector(state => state._constructor);
+  const {activeComponents} = useAppSelector(state => state._constructor);
   const dispatch = useAppDispatch();
 
-  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragStart = () => {
     dispatch(setDraggingComponent(component));
   };
 

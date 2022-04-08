@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import Icon from 'src/components/Icon';
-import { EColors } from 'src/const/colors';
-import { TTab } from 'src/features/constructor/types';
+import React, {FC} from 'react';
+import Icon from 'components/Icon';
+import {EColors} from 'const/colors';
+import {TTab} from 'features/constructor/types';
 
 export type TTabProps = TTab & {
   iconId: string
@@ -26,3 +26,4 @@ const Tab: FC<TTabProps> = ({iconId, isActive, mode, onClick}) => {
 };
 
 export default Tab;
+ 

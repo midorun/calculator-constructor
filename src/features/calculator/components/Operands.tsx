@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from 'src/app/hooks';
-import { setOperand } from 'src/features/calculator/calculatorSclise';
-import Button from 'src/features/calculator/components/Button';
-import { operands } from 'src/features/calculator/const';
+import { useAppDispatch } from 'app/hooks';
+import { setOperand } from 'features/calculator/calculatorSlise';
+import Button from 'features/calculator/components/Button';
+import { operands } from 'features/calculator/const';
 
 const Operands: FC = () => {
 

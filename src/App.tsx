@@ -1,8 +1,8 @@
 import React from 'react';
-import { useAppSelector } from 'src/app/hooks';
-import Constructor from 'src/features/constructor';
-import Calculator from 'src/features/calculator';
-import Switch from 'src/features/constructor/containers/Switch';
+import { useAppSelector } from 'app/hooks';
+import Constructor from 'features/constructor';
+import Calculator from 'features/calculator';
+import Switch from 'features/constructor/containers/Switch';
 import './App.css';
 
 function App() {

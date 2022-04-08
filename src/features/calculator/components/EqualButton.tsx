@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from 'src/app/hooks';
-import { calculate } from 'src/features/calculator/calculatorSclise';
+import { useAppDispatch } from 'app/hooks';
+import { calculate } from 'features/calculator/calculatorSlise';
 
 const EqualButton: FC = () => {
   const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { operations } from 'src/features/calculator/const';
+import { operations } from 'features/calculator/const';
 
 export type OperationType = typeof operations[number] | ''
 

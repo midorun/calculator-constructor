@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, {FC} from 'react';
 
-import iconsRoute from 'src/assets/icons.svg';
+import iconsRoute from 'assets/icons.svg';
 
 
 type TIconProps = {

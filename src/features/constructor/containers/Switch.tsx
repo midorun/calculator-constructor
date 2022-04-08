@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { EColors } from 'src/const/colors';
-import { setMode } from 'src/features/constructor/constructorSlice';
-import Tab from 'src/features/constructor/components/Tab';
-import { EMods, TTab } from 'src/features/constructor/types';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { EColors } from 'const/colors';
+import { setMode } from 'features/constructor/constructorSlice';
+import Tab from 'features/constructor/components/Tab';
+import { EMods, TTab } from 'features/constructor/types';
 
 
 export const tabs: TTab[] = [{
@@ -15,7 +15,7 @@ export const tabs: TTab[] = [{
 }];
 
 const Switch: FC = () => {
-  const {mode} = useAppSelector(state => state._constructor);
+  const { mode } = useAppSelector(state => state._constructor);
   const dispatch = useAppDispatch();
 
   return (

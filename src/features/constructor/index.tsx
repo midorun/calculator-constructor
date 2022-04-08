@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { EColors } from 'src/const/colors';
-import Calculator from 'src/features/calculator';
+import React, {FC, useState} from 'react';
+import {useAppDispatch, useAppSelector} from 'app/hooks';
+import {EColors} from 'const/colors';
+import Calculator from 'features/calculator';
 import {
   activateComponent,
   setAboveComponentIdx
-} from 'src/features/constructor/constructorSlice';
+} from 'features/constructor/constructorSlice';
 
 const dragEnterStyles = `bg-[${EColors.light_blue}]`;
 const baseStyles = `h-[480px] w-[243px] border border-dashed border-[${EColors.border_gray_dark}] rounded z-10`;
@@ -19,17 +19,12 @@ const Constructor: FC = () => {
 
   const [className, setClassName] = useState(baseStyles);
 
-  const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    // console.log(e);
-  };
-
-  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragEnter = () => {
     setClassName([baseStyles, dragEnterStyles].join(' '));
     dispatch(setAboveComponentIdx(activeComponents.length - 1));
   };
 
-  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+  const handleDragLeave = () => {
     setClassName(baseStyles);
     // dispatch(setAboveComponentIdx(-1));
   };

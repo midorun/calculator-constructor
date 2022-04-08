@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { EColors } from 'src/const/colors';
-import { setMaxDisplaySymblos } from 'src/features/calculator/calculatorSlise';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { EColors } from 'const/colors';
+import { setMaxDisplaySymblos } from 'features/calculator/calculatorSlise';
 
 
 const Display: FC = () => {

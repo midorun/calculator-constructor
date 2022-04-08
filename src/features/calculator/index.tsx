@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
-import { useAppSelector } from 'src/app/hooks';
-import Display from 'src/features/calculator/components/Display';
-import EqualButton from 'src/features/calculator/components/EqualButton';
-import Operands from 'src/features/calculator/components/Operands';
-import Operations from 'src/features/calculator/components/Operations';
-import Stick from 'src/features/constructor/components/Stick';
-import Draggable from 'src/features/constructor/containers/Draggable';
+import { useAppSelector } from 'app/hooks';
+import Display from 'features/calculator/components/Display';
+import EqualButton from 'features/calculator/components/EqualButton';
+import Operands from 'features/calculator/components/Operands';
+import Operations from 'features/calculator/components/Operations';
+import Stick from 'features/constructor/components/Stick';
+import Draggable from 'features/constructor/containers/Draggable';
 import {
   EComponents,
   EMods,
   TComponent,
   TComponentMatcher
-} from 'src/features/constructor/types';
+} from 'features/constructor/types';
 
 export type TCalculator = {
   components: TComponent[]

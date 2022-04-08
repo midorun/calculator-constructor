@@ -18,7 +18,7 @@ export type TTab = {
 }
 
 export type TComponent = keyof typeof EComponents
-
+ 
 export type TComponentMatcher = {
   [key in TComponent]: JSX.Element;
 };
