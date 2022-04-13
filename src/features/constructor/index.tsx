@@ -1,6 +1,7 @@
-import React, {FC, useState} from 'react';
-import {useAppDispatch, useAppSelector} from 'app/hooks';
-import {EColors} from 'const/colors';
+import Icon from 'components/Icon';
+import React, { FC, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { EColors } from 'const/colors';
 import Calculator from 'features/calculator';
 import {
   activateComponent,
@@ -21,12 +22,13 @@ const Constructor: FC = () => {
 
   const handleDragEnter = () => {
     setClassName([baseStyles, dragEnterStyles].join(' '));
-    dispatch(setAboveComponentIdx(activeComponents.length - 1));
+    if (!activeComponents.find(activeComponent => activeComponent === draggingComponent)) {
+      dispatch(setAboveComponentIdx(activeComponents.length - 1));
+    }
   };
 
   const handleDragLeave = () => {
     setClassName(baseStyles);
-    // dispatch(setAboveComponentIdx(-1));
   };
 
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
@@ -38,9 +40,7 @@ const Constructor: FC = () => {
     if (draggingComponent) {
       dispatch(activateComponent(draggingComponent));
     }
-    // dispatch(setAboveComponentIdx(-2));
   };
-
 
   return (
     activeComponents.length ?
@@ -64,7 +64,7 @@ const Constructor: FC = () => {
 
         >
           <div className={'flex justify-center'}>
-            <img src={'/add.svg'} alt={'add component icon'}/>
+            <Icon id={'add'} className={'w-[20px] h-[20px]'} stroke={EColors.black}/>
           </div>
           <div
             className={`text-center text-[14px] leading-[17px] text-[${EColors.blue}] font-medium`}>

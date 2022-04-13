@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 import {
   EComponents,
@@ -42,7 +42,7 @@ export const constructorSlice = createSlice({
       state.activeComponents.splice(state.aboveComponentIdx + 1, 0, action.payload);
     },
     deactivateComponent: (state, action: PayloadAction<TComponent>) => {
-      state.activeComponents = state.activeComponents.filter(component => component !== action.payload);
+      state.activeComponents = state.activeComponents.filter(activeComponent => activeComponent !== action.payload);
     },
     setMode: (state, action: PayloadAction<TMode>) => {
       state.mode = action.payload;

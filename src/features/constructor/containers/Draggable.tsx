@@ -1,11 +1,11 @@
-import React, {FC} from 'react';
-import {useAppDispatch, useAppSelector} from 'app/hooks';
+import React, { FC } from 'react';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
   deactivateComponent,
   setAboveComponentIdx,
   setDraggingComponent
 } from 'features/constructor/constructorSlice';
-import {TComponent} from 'features/constructor/types';
+import { TComponent } from 'features/constructor/types';
 
 export type DraggableProps = {
   component: TComponent
@@ -23,23 +23,17 @@ const Draggable: FC<DraggableProps> = ({
     dispatch(setDraggingComponent(component));
   };
 
-  const handleDragEnter = () => {
-    console.log();
-  };
-
   const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     dispatch(setAboveComponentIdx(activeComponents
       .findIndex(leavedComponent => leavedComponent === component)));
   };
 
-  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+  const handleDrop = () => {
     dispatch(setDraggingComponent(null));
   };
 
-  const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
-    e.preventDefault();
+  const handleDragEnd = () => {
     dispatch(setDraggingComponent(null));
     dispatch(setAboveComponentIdx(-2));
   };
@@ -51,7 +45,6 @@ const Draggable: FC<DraggableProps> = ({
   return (
     <div
       draggable={true}
-      onDragEnter={handleDragEnter}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}

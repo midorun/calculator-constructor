@@ -18,7 +18,7 @@ export type TCalculator = {
   isConstructor?: boolean
 }
 
-const Calculator: FC<TCalculator> = ({ components, isConstructor }) => {
+const Calculator: FC<TCalculator> = ({components, isConstructor}) => {
 
   const {
     mode,
@@ -28,7 +28,7 @@ const Calculator: FC<TCalculator> = ({ components, isConstructor }) => {
   } = useAppSelector(state => state._constructor);
 
   const matcher: TComponentMatcher = {
-    [EComponents.display]: <Display/>,
+    [EComponents.display]: <Display isConstructor={isConstructor}/>,
     [EComponents.operations]: <Operations/>,
     [EComponents.operands]: <Operands/>,
     [EComponents.equalBtn]: <EqualButton/>,
@@ -53,8 +53,6 @@ const Calculator: FC<TCalculator> = ({ components, isConstructor }) => {
     !isConstructor &&
     activeComponents.find(activeComponent => activeComponent === component);
 
-  // console.log(showStick);
-
   return (
     <div className={'w-[240px] flex flex-col gap-y-[12px]'}>
       {components.map((component) => {
@@ -63,7 +61,7 @@ const Calculator: FC<TCalculator> = ({ components, isConstructor }) => {
           <div key={component}>
             {
               showStickTop(component) ?
-                <Stick className={'stick-top'}/> :
+                <Stick/> :
                 null
             }
             <div
@@ -78,7 +76,7 @@ const Calculator: FC<TCalculator> = ({ components, isConstructor }) => {
             </div>
             {
               showStickBottom(component) ?
-                <Stick className={'stick-bottom'}/> :
+                <Stick/> :
                 null
             }
           </div>

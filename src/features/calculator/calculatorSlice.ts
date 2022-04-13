@@ -1,6 +1,6 @@
-/* eslint-disable indent */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { operations } from 'features/calculator/const';
+import roundNumberWithExp from 'utils/roundNumberWithExp';
 
 export type OperationType = typeof operations[number] | ''
 
@@ -10,15 +10,16 @@ export interface CalculatorState {
   secondOperand: string;
   operation: OperationType;
   prevOperation: OperationType;
-  maxDisplaySymbols?: number;
+  isDisplayLimitReached: boolean;
 }
 
 const initialState: CalculatorState = {
   result: '',
-  firstOperand: '111111111111111111111111',
+  firstOperand: '',
   secondOperand: '',
   operation: '',
   prevOperation: '',
+  isDisplayLimitReached: false
 };
 
 export const calculatorSlice = createSlice({
@@ -26,15 +27,15 @@ export const calculatorSlice = createSlice({
   initialState,
   reducers: {
     setOperand: (state, action: PayloadAction<string>) => {
-      action.payload = action.payload === ',' ? '.' : action.payload;
+      if (state.isDisplayLimitReached) return;
       if (!state.operation) {
-        state.firstOperand = (action.payload === '.' && !state.firstOperand ?
+        state.firstOperand = (action.payload === ',' && !state.firstOperand ?
           '0' :
           state.firstOperand) + action.payload;
         state.result = '';
         state.secondOperand = '';
       } else {
-        state.secondOperand = (action.payload === '.' && !state.secondOperand ?
+        state.secondOperand = (action.payload === ',' && !state.secondOperand ?
           '0' :
           state.secondOperand) + action.payload;
       }
@@ -45,36 +46,51 @@ export const calculatorSlice = createSlice({
         state.secondOperand = '';
         state.result = '';
       }
+      state.isDisplayLimitReached = false;
       state.operation = action.payload;
     },
     calculate: state => {
-      const firstOperand = state.firstOperand ? state.firstOperand : state.result;
-      const operation = state.operation ? state.operation : state.prevOperation;
+      const firstOperand = +(state.firstOperand || state.result).replace(',', '.');
+      const secondOperand = +state.secondOperand.replace(',', '.');
+      const operation = state.operation || state.prevOperation;
+
+      let result;
 
       switch (operation) {
-        case '+': {
-          state.result = (+firstOperand + +state.secondOperand).toString();
+      case '+':
+        result = firstOperand + secondOperand;
+        break;
+      case '-':
+        result = firstOperand - secondOperand;
+        break;
+      case 'x':
+        result = firstOperand * secondOperand;
+        break;
+      case '/':
+        if (secondOperand === 0) {
+          result = 'Не определено';
           break;
         }
-        case '-':
-          state.result = (+firstOperand - +state.secondOperand).toString();
-          break;
-        case 'x':
-          state.result = (+firstOperand * +state.secondOperand).toString();
-          break;
-        case '/':
-          state.result = (+firstOperand / +state.secondOperand).toString();
-          break;
-        default:
-          break;
+        result = firstOperand / secondOperand;
+        break;
+      default:
+        result = firstOperand;
+        break;
       }
 
+      const resultAsString = result.toString();
+
+      if (resultAsString.includes('e')) {
+        result = roundNumberWithExp(resultAsString);
+      }
+
+      state.result = result.toString().replace('.', ',');
       state.firstOperand = '';
       if (state.operation) state.prevOperation = state.operation;
       state.operation = '';
     },
-    setMaxDisplaySymblos: (state, action: PayloadAction<number>) => {
-      state.maxDisplaySymbols = action.payload;
+    setIsDisplayLimitReached: (state, action: PayloadAction<boolean>) => {
+      state.isDisplayLimitReached = action.payload;
     }
   }
 });
@@ -83,7 +99,7 @@ export const {
   setOperand,
   setOperation,
   calculate,
-  setMaxDisplaySymblos
+  setIsDisplayLimitReached
 } = calculatorSlice.actions;
 
 export default calculatorSlice.reducer;
