@@ -1,4 +1,4 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
   EComponents,
@@ -16,9 +16,9 @@ export interface ConstructorState {
 }
 
 const initialState: ConstructorState = {
-  mode: EMods.Runtime,
+  mode: EMods.Constructor,
   components: Object.values(EComponents),
-  activeComponents: Object.values(EComponents),
+  activeComponents: [],
   draggingComponent: null,
   aboveComponentIdx: -2
 };
